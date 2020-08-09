@@ -93,3 +93,8 @@ use "git restore --staged <file>..." to unstage
 example.txt   # ignore example.txt file
 *.txt          # ignore all *.txt file types 
 
+git stash save your-file-name
+git checkout master
+# do whatever you had to do with master
+git checkout staging
+git stash pop
