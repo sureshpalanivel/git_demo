@@ -65,4 +65,10 @@ use "git restore <file>..." to discard changes in working directory)
 
 $ git restore git_comments.txt  # Before git add. otherwise not restore
 
+@@ .gitignore
+
+/my_file      # ignore all files in my_file directory
+example.txt   # ignore example.txt file
+*.txt          # ignore all *.txt file types 
+
 
