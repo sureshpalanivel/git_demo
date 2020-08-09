@@ -3,8 +3,10 @@
 @@@ GIT COMMENTS  @@@
 
 *****************
+REFERRED : https://www.youtube.com/watch?v=SWYqp7iY_Tc
 
 /Desktop/myapp
+"git bash" (Just right click the folder and do it)
 
 @CREATE NEW FILE
 $ touch index.html  #add new filefile
