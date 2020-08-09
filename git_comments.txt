@@ -5,68 +5,98 @@
 *****************
 
 /Desktop/myapp
+
+@CREATE NEW FILE
 $ touch index.html  #add new filefile
 $ touch app.js      #add new filefile
+
+
+@INIT
 $ git init          #.git folder created
+
+
+@CONFIG
 $ git config --global user.name "Suresh"   #add username
 $ git config --global user.email "sureshadhi13@gmail.com" #add useremail created
+
+
+@ADD
 $ git add index.html  #add index.html file to git repository
-$ git rm --cached index.html  #remove index.html file to git repository
-$ git status  #add or remove remove any file after you check the status file added or removed or not
 $ git add *.html     #add all .html file to git repository
 $ git add .           #add all files to git repository and do anychanges in file and run this comment to committed all files changes This is initial commit Not full  commit check status show initial commit after run "git commit" No changes found all files are commited
+
+
+@REMOVE AND STATUS
+$ git rm --cached index.html  #remove index.html file to git repository
+$ git status  #add or remove remove any file after you check the status file added or removed or not
+
+
+@CHECKOUT
 $ git checkout -- index.html #discard the chnages in git repository file
+
+
+@COMMIT
 $ git commit   # commit changes after type "i" got o insert mode (press Esc and type ":wq" quit that window)
 $ git commit -m 'changed app.js' # Just add comments what are file or changes you commited
 $ git clear   # clear all comments just like cmd cls
 $ touch .gitignore # create ignore file some file mention Ex: log.txt /dir2  *.txt ignore all txt files
 
-#git branch login    # create new broanch branch name (login)
-#git checkout login  # Now loged in new branch (login) 
-#git checkout master # Now loged in Master Branch (Master) 
-#git merge login     # Now merge (login) user files in Master Branch (Master) 
 
-#git remote  #now go to upload the file in github repository Listout GITHUB repositorys
-#git remote add orgin https//github.com/ #github repository link
-#git remote  #List added GITHUB repositorys
+@CREATE BRANCH LOGIN AND LOGOUT
+$ git branch login    # create new broanch branch name (login)
+$ git checkout login  # Now loged in new branch (login) 
+$ git checkout master # Now loged in Master Branch (Master) 
+$ git merge login     # Now merge (login) user files in Master Branch (Master) 
 
-#git push -u orgin master #Push the file into GITHUB repositorys
-#git push 
+If you wish to set tracking information for this branch you can do so with:
+$ git branch --set-upstream-to=orgin/<branch> master
 
-#git pull # Get other user updates
-#git pull origin master
+
+@REMOTE
+$ git remote  #now go to upload the file in github repository Listout GITHUB repositorys
+$ git remote add orgin https//github.com/ #github repository link
+$ git remote  #List added GITHUB repositorys
+
+
+@PUSH
+$ git push -u orgin master #Push the file into GITHUB repositorys
+$ git push 
+
+
+@PULL
+$ git pull # Get other user updates
+$ git pull origin master
 $ git branch --set-upstream-to=orgin/master master
 Branch 'master' set up to track remote branch 'master' from 'orgin'.
-$git pull origin master --allow-unrelated-histories
+$ git pull origin master --allow-unrelated-histories
 
-#then create new folder and make the folder git bash(Just right click the folder and do it)
-#git clone "repositerylink"
+$ git pull <remote> <branch>
 
-$git rm -r --cached ./task_db  # Remove indexed directory from git
+
+@CLONE
+#then create new folder and make the folder "git bash" (Just right click the folder and do it)
+$ git clone "repositerylink"
+
+$ git rm -r --cached ./task_db  # Remove indexed directory from git
 
 *****************
 
-git merge --continue
+@MERGE
+$ git merge --continue
 
 $ git pull
 There is no tracking information for the current branch.
 Please specify which branch you want to merge with.
 See git-pull(1) for details.
 
-    git pull <remote> <branch>
 
-If you wish to set tracking information for this branch you can do so with:
-
-    git branch --set-upstream-to=orgin/<branch> master
-
-###
+@RESTORE
 use "git add <file>..." to update what will be committed)
 use "git restore <file>..." to discard changes in working directory)
-
 $ git restore git_comments.txt  # Before git add. otherwise not restore
 
-@@ .gitignore
 
+@@ .GITIGNORE
 /my_file      # ignore all files in my_file directory
 example.txt   # ignore example.txt file
 *.txt          # ignore all *.txt file types 
