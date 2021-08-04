@@ -1,0 +1,123 @@
+
+Session
+Cookie
+Callback
+
+Mango-Session
+username and email login
+file upload
+form validation
+
+** Errors **
+TypeError: Cannot read property 'comparePassword' of null -> User Not LOgin
+
+
+@$
+
+File Upload
+Form Validation
+CSRF
+LOgger
+
+Moongose
+PDF
+Export Excel csv
+Email
+
+JWT
+PASSPORT
+
+REACT
+GITHUP
+
+PAYMENT GATEWAY
+
+@$
+
+
+https://bytearcher.com/articles/formidable-vs-busboy-vs-multer-vs-multiparty/
+https://stackabuse.com/handling-file-uploads-in-node-js-with-expres-and-multer
+https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object
+https://stackoverflow.com/questions/24738169/how-can-i-get-the-current-datetime-in-the-format-2014-04-01080000-in-node
+
+
+
+
+const saveNewUser = async (req, res) => {
+
+    const form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files){
+  
+        var oldPath = files.picture.path;
+        console.log(oldPath);
+        var newPath = path.join(__dirname, 'public/layout_files/')
+                + '/'+files.picture.name;
+        console.log(newPath);
+        var rawData = fs.readFileSync(oldPath);
+        console.log(rawData);
+      
+        fs.writeFile(newPath, rawData, function(err){
+            if(err) console.log(err)
+            return res.send("Successfully uploaded")
+        })
+    })
+
+    return ;
+
+   /*  const form = formidable({ multiples: true, uploadDir: 'public/layout_files/' });
+    //const form = formidable({ multiples: true});
+    //form.parse(req);
+    
+    form.parse(req, (err, fields, files) => {
+        if (err) {
+          console.log('Errrr Image');
+          next(err);
+          return;
+        }
+        console.log('fields:', fields);
+        console.log('files:', files);
+
+        const user = new userInfo({
+            name: fields.name,
+            age: fields.age,
+            gender: fields.gender,
+            rank: fields.rank,
+            picture: files.
+        });
+        if(await user.save()) {
+            console.log('SUSSSuccess');
+            res.status(200).json({'msg':'Success'});
+            //res.redirect('/layout/userlist');
+        }else {
+            console.log('error');
+            res.status(422).json({'msg':'Some error...'});
+        }
+        
+        res.json({ fields, files });
+      }); */
+
+   /*  const user = new userInfo({
+        name: req.body.name,
+        age: req.body.age,
+        gender: req.body.gender,
+        rank: req.body.rank
+    });
+    if(await user.save()) {
+        console.log('SUSSSuccess');
+        res.status(200).json({'msg':'Success'});
+        //res.redirect('/layout/userlist');
+    }else {
+        console.log('error');
+        res.status(422).json({'msg':'Some error...'});
+    } */
+
+    /* const userList = await userInfo.find().select('name gender age rank');
+    console.log(userList.length);
+    if(userList.length>0) {
+        console.log('success');
+        res.status(200).json({userList, 'msg':'Success'});
+    }else {
+        console.log('error');
+        res.status(422).json({'msg':'Some error...'});
+    } */
+}

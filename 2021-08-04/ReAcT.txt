@@ -1,0 +1,152 @@
+
+
+@ ReAcT
+
+nodejs.org/en
+
+node -v
+
+npx create-react-project green-apple
+
+cd green-apple
+
+npm run start
+
+npm install - install node modules
+
+@FUNC index.js
+
+function App() {
+    const title = 'Welcome TO React...';
+    render(
+        <div className="App">
+			<div className="content">
+			   <h1> App Component </h1>			
+			   <h2> {{ title }} </h2>			
+		    </div>
+	    </div>
+    );
+}
+
+export default App;
+
+@FUNC app.js
+
+import App from './app';
+
+<App />
+
+useeffect run every render
+
+json Server :
+  npx json-server watch data/db.json --port 8000
+
+throw Error('Data not found...');
+
+custom.modules.css
+className={style.heading}
+React.fragments
+timeago.js
+const name = useRef    
+name.current.value
+name.()
+
+createContext
+useReducer
+useContext
+
+url.createobjecturl(file)
+
+.sort(p1,p2)
+
+
+Redux
+
+process.env.REACT_APP_BASEPATH
+
+Localstorage
+
+install @material-ui/core
+
+datepicker
+date.js
+
+jwt-decode
+
+Promise.reject('');
+
+useeffect(()=> {
+    console.log('Onceupon time...');
+  return ()=> {
+    console.log('Cleanup');
+  }
+})
+
+useContext
+
+props.match.params
+props.children
+props.history
+props.location
+props.navigation
+
+props.match.params.id
+props.history.push('/cart'+ props.match.params.id +'?gty=4')
+props.location.search? Number(props.locatio.search.split("=")[1]):1;
+
+data.age = 6
+[...Array(data.age).keys()].map()
+
+setState()
+getState()
+
+npm i js-cookie
+
+
+
+some()
+reduce() do some adition or other operation
+filter() return only matching rcds
+find()
+include()
+foeach()
+
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+[... new set(a)]
+
+
+import axios from 'axios';
+
+axios.defaults.proxy.host = "http://www.demoapp.com"
+axios.defaults.proxy.port = ...
+axios.defaults.proxy.auth.username = ...
+axios.defaults.proxy.auth.password = ...
+
+
+rm -r package-lock.json node_modules
+
+var formData = new FormData();
+var imagefile = document.querySelector('#file');
+formData.append("image", imagefile.files[0]);
+axios.post('upload_file', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+})
+
+
+<td> <button type="button" className="update_user" data-id="{udata._id}" onClick={(event)=> {getuserInfo(event, udata._id)}}>Update</button> </td>
+
+
+@img upload SIngle and mUltiple
+
+const frm = document.getElementById('createuser');
+const formData = new FormData(frm);
+//const picture = document.querySelector('#picture');
+//formData.append("picture", picture.files[0]);
+console.log('ffffffff');
+for(var a of formData.entries()){
+    console.log([a[0]+' '+a[1]]);
+}
+console.log('uuuuuuuu');

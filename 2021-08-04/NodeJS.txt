@@ -1,0 +1,706 @@
+
+Template Engine
+Js Assigncronose
+
+@ @
+npm install -g // install node modules
+
+npm init -y
+npm i
+npm run start
+
+** MERN **
+npx create-react-app react-apple
+cd react-apple
+npm start
+
+npm install react-bootstrap bootstrap@4.6.0
+
+@ @
+
+// Node JS
+
+const path = requir('path');
+const http = require('http');
+const fs = require(fs);
+
+fs.readFile(path.join('${__dirname}/main/home.html'));
+
+const app = http.createServer((req, res) => {
+    if(req.url === '/')
+    {
+       res.end('<h1>Good Node JS </h1>');
+    }
+});
+
+const PORT = process.env.PORT || 2500;
+
+
+// Express JS
+
+const express = require('express');
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+
+
+const morgan = require('morgan');
+require('dotenv/config');
+
+const port = process.env.port || 5000;
+
+
+
+// Node
+const mailer = require('nodemailer');
+const mailer = require('url');
+const mailer = require('formidable');
+const mailer = require('mysql');
+const mailer = require('mongodb');
+
+const exlay = require('express-ejs-layouts');
+app.use(exlay);
+
+
+
+ ** cmds **
+
+npm install 
+express
+ejs
+express-session  
+express-flash 
+express-validator // V 
+connect-flash
+nodemon
+morgan
+mongoose
+uuid 
+dotenv 
+cors
+body-parser 
+cookie-parser 
+bcrypt 
+bcryptjs 
+consola
+jsonwebtoken
+passport
+passport-jwt 
+passport passport-local
+method-override
+sequelize mysql2 sequelize-cli
+bluebird // promisyfy
+
+multer   // middleware FU
+nodemailer
+formidable // FU
+mysql
+mongodb
+jio // V
+Validator
+express-fileupload
+
+
+req.cookies
+req.session
+req.files
+req.body
+req.params.
+req.path
+req.query
+
+res.redirect
+res.satatus
+res.json
+res.send
+res.sendFile
+res.render('./curd/userlist', {userList});
+
+<%-include("partials/profile", {fullName:fullName}) %>
+
+
+bcrypt.hashSync(this.password, 10);
+bcrypt.compareSync(plaintext, this.password)
+
+mdbootsrap
+
+npm run server 
+
+nodemon server (file name server.js so server)
+
+** cmds **
+
+// Middleware
+app.use((req,res,next) => {
+   console.log("I am Middleware");
+   next();
+}) 
+
+app.use(morgan('dev'));
+app.use(express.static('public'));
+
+
+const abc = [{id:uuid.v4()},{id:uuid.v4()}]
+
+
+// LocalHost
+app.listen(2000,() => {
+   console.log("Server Started...");
+});
+
+// WEB
+app.get('/',(req,res) => {
+    res.status(200).send('Hi i m Node..');
+});
+
+// API
+app.get('/apple',(req,res) => {
+    res.status(202).json("Hi Friends Json ...");
+});
+
+app.get('/:id', (req,res) => {
+   res.json(req.params.id)
+})
+
+app.get('/:id', async(req,res) => {
+   const getOne = await myperson.filter(e=> e.id === req.params.id)
+   res.json(getOne)
+})
+
+app.post('/', async(req,res) => {
+   console.log(req.body);
+   myperson.push(req.body);
+   res.json(myperson);
+})
+
+
+
+//ENV
+
+APPLE_CONN = 'mangodb://localhost:27017/apple';
+
+//Mangoose
+
+const mangoose = require('mangoose');
+
+mangoose.set('useNewUrlParser', true);
+mangoose.set('useUnifiedTopology', true);
+mangoose.connect('mangodb://localhost:27017/apple',(err) => {
+   if(err){console.log('DB Not Connected')}
+   console.log('DB connected Successfully');
+})
+
+mangoose.connect(process.env.APPLE_CONN,(err) => {
+   //if(err){throw err}
+   if(err){console.log('DB Not Connected')}
+   console.log('DB connected Successfully');
+})
+
+
+*******************************************
+
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+const bodyParser = require('body-parser');
+const urlencodedParser = bodyParser.urlencoded({extended:false});
+
+app.get('/', function(req, res) {
+  __dirname
+  __filename
+    console.log('HOME LAYOUT');
+    console.log('__dirname',__dirname);
+    console.log('__filename',__filename);    
+    console.log('process.cwd()', process.cwd());
+  res.sendfile(__direname +"/"+ "index.html")
+});
+
+app.get('/home', function(req,res) {
+  res.send('<h1>Welcome '+ req.query['usernmae'] +'</h1>');
+})
+
+app.get('/home', urlencodedParser,function(req,res) {
+  res.send('<h1>Welcome '+ req.body.usernmae +'</h1>');
+})
+
+
+//Router.js
+
+const app = express();
+const router = express.Router();
+
+router.get('/home', urlencodedParser,function(req,res) {
+  console.log(req.method, req.url);
+  res.send('<h1>Welcome '+ req.body.usernmae +'</h1>');
+  res.redirect('www.google.com');
+});
+
+module.exports = router;
+
+
+//app.js
+
+const routing = require('./routing.js');
+app.use('/',routing);
+app.listen(8000);
+
+// Middleware
+
+// Aplication middleware
+app.use((req,res,next) => {
+   console.log("I am Middleware");
+   next();
+});
+
+// Route middleware
+route.use((req,res,next) => {
+   console.log("I am Route Middleware");
+   next();
+});
+app.use('/apple',routing);
+
+// Error Middleware
+app.get('*',(req,res, next) =>{
+  const err = new Error("Page Not Found");
+  next(err);
+});
+
+app.use((err,req,res,next) => {
+   console.error(err.stack);
+   res.status(500).send('Page Not Found');
+});
+
+ 
+
+
+// Views
+npm i pug --save
+const express = require('express');
+const app = express();
+app.set('view engine','pug');
+app.set('views','./views');
+app.get('/', function(req,res){
+   res.render('index');
+});
+var app
+
+
+
+//Schema
+
+const mongoose = required('mongoose');
+
+const PersonSchema = mongoose.Schema({
+   Name : {
+      type : String,
+      required : true
+   },
+   Age : {
+      type : String,
+      required : true
+   },
+   CreatedTime : {
+      type : Date,
+      required : Date.now
+   },
+});
+
+module.exports = mongoose.model('Persons', PersonSchema);
+
+
+//PersonRoute.js
+const Persons = require('./PersonsSchema');
+
+router.post('/', async(req, res) =>{
+     try {
+       const postPerson = await new Persons({
+              Name : req.body.name,
+              Age : req.body.Age
+           });
+        const savePersons = await postPerson.save();
+        res.status(200).json(savePersons);
+     }
+     catch(err){
+        res.status(500).json({"err":err});
+     }
+});
+
+router.get('/', async(req, res) =>{
+     try {
+        const getAll = await Persons.find();
+        res.status(200).json(getAll);
+     }
+     catch(err){
+        res.status(500).json({"err":err});
+     }
+});
+
+router.get('/:id', async(req, res) =>{
+     try {
+        const getById = await Persons.findById(req.params.id);
+        res.status(200).json(getById);
+     }
+     catch(err){
+        res.status(400).json({"err":err});
+     }
+});
+
+router.put('/:id', async(req, res) =>{
+     try {
+        const updatePerson = await Persons.updateOne({_id:req.params.id},
+              {$set:{Name:req.body.name,Age:req.body.Age}});
+        res.status(200).json(updatePerson);
+     }
+     catch(err){
+        res.status(400).json({"err":err});
+     }
+});
+
+router.delete('/:id', async(req, res) =>{
+     try {
+        const deletePerson = await Persons.remove({_id:req.params.id});
+        res.status(200).json(deletePerson);
+     }
+     catch(err){
+        res.status(400).json({"err":err});
+     }
+});
+
+
+//Mysql
+
+const bodyparser = require('body-parser');
+app.use(bodyparser.Json());
+
+const mysql = require('mysql');
+
+const mysqlConnection = mysql.createConnection({
+   host:'localhost',
+   user:'root',
+   password:'',
+   database:'EmployeeDB',
+   multipleStatements:true
+});
+
+mysqlconnection.connect(()=>{
+  if(!err)
+    console.log('Db connected Successfully.');
+  else
+    console.log('DB connection failed \n Error :'+ Json.stringify(err, undefned, 2));
+});
+
+// GetAll
+app.get('/employees',(req,res)=>{
+   mysqlconnection.query('select * from employees', (err, row, fields) => {
+      if(!err)
+	    console.log(row); console.log(row[0].EmpId);
+	    res.send(row);
+	  else 
+	    console.log(err);
+   });
+});
+
+// Get One
+app.get('/employees/:id',(req,res)=>{
+   mysqlconnection.query('select * from employees where EmpId = ?',[req.params.id], (err, row, fields) => {
+      if(!err)
+	    console.log(row);
+	    res.send(row);
+	  else 
+	    console.log(err);
+   });
+});
+
+// Delete
+app.delete('/employees',(req,res)=>{
+   mysqlconnection.query('Delete employees where EmpId = ?',[req.params.id], (err, row, fields) => {
+      if(!err)
+	    console.log(row);
+	    res.send('Deleted succefully...');
+	  else 
+	    console.log(err);
+   });
+});
+
+// POST INSERT 
+app.post('/employees',(req,res)=>{
+    let emp = req.body;
+	var sql = "SET @EMpId = ?;SET @Name = ?;SET @EmpCode = ?;SET @Salary = ?; \ 
+	CALL EmployeeAddOrEdit(@EMpId, @Name, @EmpCode, @Salary);";
+    mysqlconnection.query(sql,[emp.id, emp.name, emp.code, emp.salary], (err, row, fields) => {
+      if(!err)
+	    res.send('Inserted succefully...');
+	  else 
+	    console.log(err);
+    });
+});
+
+// PUT Update
+app.post('/employees',(req,res)=>{
+    let emp = req.body;
+	var sql = "SET @EMpId = ?;SET @Name = ?;SET @EmpCode = ?;SET @Salary = ?; \ 
+	CALL EmployeeAddOrEdit(@EMpId, @Name, @EmpCode, @Salary);";
+    mysqlconnection.query(sql,[emp.id, emp.name, emp.code, emp.salary], (err, row, fields) => {
+      if(!err)
+	    res.send('Updated succefully...');
+	  else 
+	    console.log(err);
+    });
+});
+
+
+@@ Node Schema @@
+
+user_name: {
+   type: String,
+   lowercase: true,
+   unique: true,
+   required: [true, "can't be blank"],
+   match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
+   index: true,
+},
+
+
+@** FirsT **@
+
+>npm init -y
+>npm i express express-session nodemon morgan mongoose dotenv cors cookie-parser bcrypt
+
+rm -rf node_modules && npm cache clean --force && npm install
+
+rm -rf node_modules
+rm package-lock.json yarn.lock
+npm cache clear --force
+npm install
+
+
+
+
+@
+Form validation ex  
+Fileupload formi
+template enjine 
+Middleware 
+mangodb 
+authendication Session & JWT & pasport 
+
+
+populate
+lookup
+
+findbyid
+findone
+find
+updateOne
+findbyidandupdate
+deleteOne
+
+promise.all all need to success
+promise.any  return first success
+promise.race return first success or fail
+
+req.query.email
+req.body.email
+req.params.email
+
+moments
+date.rfs
+helmet
+
+bcrypt.hash('123456', bcrypt.gensalt(10))
+bcrypt.compare(req.body.pass, user.pass)
+
+user._doc
+
+!user.name.includes(req.body.name);
+
+promise.all
+
+jwt.sign({name:'raja',isAdmin:'1'}, "secretKey", {expiresIn: "20s"});
+
+var authHeader = req.headers.authorization;
+token = authHeader.split('.')[1];
+jwt.verify(token,'secretKey',(err,user));
+
+
+
+ try {
+        if(mango == 'good'){
+            console.log('qqq')
+        }       
+    }catch(err){
+        console.log('fafas')
+        console.log(err)
+        console.log(err.message)
+        console.log(err.stack)
+        console.log(err.description)
+        console.log('WWWW')
+    }
+
+const errorExample = async (req, res, next) => {
+    var mango = 'xyz'
+    try {
+        throw new Error("a thing happened!");
+        //const mango ='abcd';
+        if(mango == 'good'){
+            console.log('qqq')
+        } else{
+            throw new Error("a thing happened!");
+        }
+        //res.status(400).json({msg:'Good'});
+    }catch(err){
+        console.log('fafas')
+        //console.log(err)
+        console.log(err.message)
+        //console.log(err.stack)
+        //console.log(err.description)
+        console.log('WWWW')
+        //res.status(400).json({msg:err.message});
+    }
+
+    console.log('Hai', mango);
+    res.status(400).json({msg:'Finally'});
+    //res.status(400).json({msg:'QQQ'});
+    console.log('Good Mango');
+}
+
+
+{
+  picture: {
+    name: 'kerala-girls-01-635x794 (1).jpg',
+    data: <Buffer ff d8 ff e0 00 10 4a 46 49 46 00 01 01 01 00 48 00 48 00 00 ff db 00 43 00 06 04 04 05 04 04 06 05 05 05 06 06 06 07 09 0e 09 09 08 08 09 12 0d 0d 0a ... 72292 more bytes>,
+    size: 72342,
+    encoding: '7bit',
+    tempFilePath: '',
+    truncated: false,
+    mimetype: 'image/jpeg',
+    md5: 'b4874ff0779b3bee67ec3c710c6c8f5d',
+    mv: [Function: mv]
+  }
+}
+
+
+{
+  picture: [
+    {
+      name: '7248ea4c5c37159f57db0b243911960d.jpg',
+      data: <Buffer ff d8 ff e0 00 10 4a 46 49 46 00 01 01 01 00 48 00 48 00 00 ff db 00 43 00 06 04 05 06 05 04 06 06 05 06 07 07 06 08 0a 10 0a 0a 09 09 0a 14 0e 0f 0c ... 116024 more bytes>,
+      size: 116074,
+      encoding: '7bit',
+      tempFilePath: '',
+      truncated: false,
+      mimetype: 'image/jpeg',
+      md5: 'a0de7840b8c227cb82dfa53709a5f724',
+      mv: [Function: mv]
+    },
+    {
+      name: 'kerala-girls-01-635x794 (1).jpg',
+      data: <Buffer ff d8 ff e0 00 10 4a 46 49 46 00 01 01 01 00 48 00 48 00 00 ff db 00 43 00 06 04 04 05 04 04 06 05 05 05 06 06 06 07 09 0e 09 09 08 08 09 12 0d 0d 0a ... 72292 more bytes>,
+      size: 72342,
+      encoding: '7bit',
+      tempFilePath: '',
+      truncated: false,
+      mimetype: 'image/jpeg',
+      md5: 'b4874ff0779b3bee67ec3c710c6c8f5d',
+      mv: [Function: mv]
+    }
+  ]
+}
+
+
+@IMg Upload Single
+
+@ FrontEnd
+
+ const frm = document.getElementById('createuser');
+ const formData = new FormData(frm);
+ //const picture = document.querySelector('#picture');
+ //formData.append("img", picture.files[0]);
+
+@ Backend
+
+ var fpath = '';
+    //console.log(req.files.);
+    console.log(req.files);
+
+    if(req.files != null && req.files.picture != null) {
+        console.log('Img Upload');      
+        const file = req.files.picture;
+        const rand = random.int(100, 999);
+        //fpath = 'public/layout_files/'+rand+file.name;
+        fpath = 'public/layout_files/'+rand+Date.now()+'.jpg';
+        //console.log([file, rand, fpath]);
+        file.mv(fpath, (err) => {
+            if(err) {
+                console.log('Error....');
+                next();
+            }else {
+                console.log(fpath);
+                console.log('QQQQQQ uploaded successfully...');
+            }
+        })  
+    }
+
+@ Multiple
+
+
+var fpath = '';
+    var arr =[];
+
+    if(req.files != null && req.files.picture.length >0) {
+        console.log('Good');
+        req.files.picture.forEach((pic, index)=> {       
+            //const file = req.files.picture;
+            var file = pic;
+            var rand = random.int(100, 999);
+            //fpath = 'public/layout_files/'+rand+file.name;
+            fpath = 'public/layout_files/'+rand+Date.now()+'.jpg';
+            arr.push(fpath);
+            console.log([rand, fpath]);
+            file.mv(fpath, (err) => {
+                if(err) {
+                    console.log('Error....');
+                    next();
+                }else {
+                    //console.log(fpath);
+                    console.log(arr);
+                    console.log('QQQQQQ uploaded successfully...');
+                }
+            })  
+        });
+    }
+
+    return;
+
+
+@FOR
+
+<% for (var i = 0, l = gamedata.user.length; i < l; i++) {
+  var obj = gamedata.user[i];
+%>
+  <option value="<%= i %>"><%= obj.player_id %></option>
+<% } %>
+
+
+@FOREACH
+
+<ul>
+  <% users.forEach(function(user){ %>
+    <%- include('user/show', {user: user}); %>
+  <% }); %>
+</ul>
+
+<% utils.gameData().user.forEach(function(element, index, item){ %>
+     <%= element.player_id %>
+<% }); %>
+
+
+"Hello <%= include('file', {person: 'John'}); %>",
+
+@ @ @ @ @ @
+formdata
+fileupload

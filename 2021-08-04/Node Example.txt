@@ -1,0 +1,133 @@
+
+
+
+
+@ CallBack Example: @
+
+function step1(value, callback){
+  console.log(value);
+  callback('A1','A8',callback('Z1','Z8', callback('L1','L8')), callback('H1','H8', callback('k1','k8')));
+  console.log(value+10);
+}
+
+step1(100, function(a,b){
+   console.log('I am Callback...');
+   console.log(a);
+   console.log(b);
+});
+
+OUTPUT:
+100
+I am Callback...
+L1
+L8
+I am Callback...
+Z1
+Z8
+I am Callback...
+k1
+k8
+I am Callback...
+H1
+H8
+I am Callback...
+A1
+A8
+110
+
+@@ Promise
+
+const p1 = Promise.resolve('Resolved successfully...');
+
+const p2 = Promise.reject('Ohh Rejected...');
+
+const p3 = '100';
+
+const p4 = new Promise((resolve,reject)=> {
+  setTimeout(resolve, 3000, 'P3 Successfully...');
+})
+
+Promise.all([p1,p2,p3,p4]).then((result)=>console.log(result));
+Promise.race([p1,p2,p3,p4]).then((result)=>console.log(result));
+Promise.allSettled([p1,p2,p3,p4]).then((result)=>console.log(result));
+Promise.any([p1,p2,p3,p4]).then((result)=>console.log(result));
+
+
+console.log(req.session);
+OutPUT :
+
+Session {
+  cookie: {
+    path: '/',
+    _expires: 100000,
+    originalMaxAge: 100000,
+    httpOnly: true
+  },
+  user: {
+    _id: 60c4847d0c525418a48c36dc,
+    username: 'suresh',
+    email: 'sureshadhi13@gmail.com',
+    password: '$2b$10$6kUF5fuJC55Izgcv7P44IuBE7T7gIuFkWA1bDUzJbL.WesX2Zn7Py',
+    __v: 0
+  }
+}
+
+console.log(user);
+console.log(req.session.user);
+OutPUT :
+
+{
+  _id: 60c4847d0c525418a48c36dc,
+  username: 'suresh',
+  email: 'sureshadhi13@gmail.com',
+  password: '$2b$10$6kUF5fuJC55Izgcv7P44IuBE7T7gIuFkWA1bDUzJbL.WesX2Zn7Py',
+  __v: 0
+}
+
+res.cookie('user', username, {maxAge: 10800}).send('cookie set');
+req.session.destroy();
+req.session = null
+
+function logout (req, res, next){
+    delete req.session['user'];
+    res.redirect(302,'/');
+};
+
+app.get('/:name(article|article2|article3)?', function(req, res) {
+    var name = req.params.name;
+    res.render(name);
+});
+
+const form = formidable({ multiples: true });
+ 
+form.parse(req, (err, fields, files) => {
+  res.writeHead(200, { 'content-type': 'application/json' });
+  res.end(JSON.stringify({ fields, files }, null, 2));
+});
+
+
+{
+"errors": [
+    {
+    "value": "Q",
+    "msg": "Invalid value",
+    "param": "name",
+    "location": "body"
+    },
+    {
+    "value": "904",
+    "msg": "Invalid value",
+    "param": "mobile",
+    "location": "body"
+    },
+    {
+    "value": "Cuhg",
+    "msg": "Invalid value",
+    "param": "email",
+    "location": "body"
+    }
+]
+}
+
+npm cache clean --force
+npm cache verify

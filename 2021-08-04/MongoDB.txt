@@ -1,0 +1,216 @@
+
+
+mongod --version
+
+mongo -version
+
+
+groupby *
+concat
+between
+populate
+aggregate*
+lookup
+date
+match*
+distinct
+aggregate*
+out
+if else
+$multiply *
+$add *
+
+
+show dbs
+use payroll
+db.createCollection('profile')
+show collections
+db.profile.drob()
+db.dropdatabase()
+db.profile.insert({name:'Guru', age:25}) // inserted 1 record
+db.profile.insertOne({name:'Guru', age:25}) // return inserted objectId 
+db.profile.insertMany([{name:'Guru', age:25}, {name:'Guru', age:25}]) // return inserted objectIds 
+db.profile.find()
+db.profile.find().count()
+db.profile.find().pretty()
+db.profile.explain().find()
+db.profile.explain('executionStats').find()
+db.profile.find({name:'Guru'}).pretty()
+db.profile.find({name:'Guru', Age: {$gte:23, $lte:20}}).pretty()
+db.profile.find({name:'Guru', Age: {$eq:23}}).pretty()
+db.profile.find({name:'Guru', Age: {$ne:23}}).pretty()
+db.profile.find({name:'Guru', Age: {$regex:'/picard/i'}}).pretty()
+db.profile.find({$and: [{name: 'john'}, {age:20}])
+db.profile.find({$or: [{name: 'john'}, {age:20}])
+db.profile.find({name: {$in: ["john", "Ben"]})
+db.profile.find({name: {$nin: ["john", "Ben"]})
+db.profile.find({name: {$nin: ["john", "Ben"]})
+db.profile.find({age: {$not: {$lt: 25}})
+db.profile.find().sort({age:1, name:-1})
+db.profile.find({age:{$lt:20}},{name:1,age:0}) //Only show Name not show age field
+db.profile.find({"age.city": "Kochi")
+UserSchema.find({name: { $regex: '.*' + name + '.*' } }).limit(5);
+db.users.find({"name": /.*m.*/})
+db.collection.find({"name_lower": thename.toLowerCase()})
+db.collection.find( {"name_lower":
+    { $regex: new RegExp("^" + thename.toLowerCase(), "i") } }
+);
+
+User.find({ email: /gmail/ });
+User.find({ email: { $regex: 'gmail' } });
+Thing.find().exists('name')
+
+
+db.profile.delete({})  // Delete all Records
+db.profile.remove({})  // Delete all Records
+db.profile.deleteOne({name:'john'}) // only delete matching first rcd
+db.profile.remove({name:'john'})  // remove matching all rcd
+db.profile.remove({name:'john'}, 2)  // remove matching first 2 rcd only
+
+
+db.profile.update({name:'Guru'},{$set:{age:12}})
+db.profile.update({name:'Guru'},{$unset:{age:''}}) // age field removed from the collection
+db.profile.updateMany({},{$rename:{age:'Age'}})
+db.profile.updateMany({"address.city":"kochi"},{$set:{"address.city":'cochin'}})
+db.profile.updateOne({}, {$push:{color:'pink'}})
+db.profile.updateOne({name:"john"}, {$push:{color:'pink'}})
+db.profile.updateOne({name:"john"}, {$push: {color: {$each : ['yellow','pink']}}})
+db.profile.updateOne({name:"john"}, {$pull: {color: ['yellow','pink']}})
+db.profile.updateOne({name:"john"}, {$addToSet: {color: 'pink'}})
+db.profile.updateOne({}, {$addToSet: {color: 'pink'}}, {multi : true})
+db.profile.updateOne({name:"john"}, {$pop: {color: -1}})
+db.profile.updateOne({name:"john"}, {$currentDate: {created_at: true}})
+db.profile.updateOne({name:"john"}, {$inc: {age: 5}})
+db.profile.updateOne({name:"john"}, {$inc: {age: -5}})
+
+
+db.profile.getIndexs() 
+db.profile.createIndex({age:1},{name: 'ageIndex',background: true, unique: true})
+db.profile.explain().find()
+db.profile.explain('executionStats').find()
+db.profile.dropIndex({'_id_': 1})
+db.profile.dropIndexes() // delete all indexex including _id_
+
+
+.next()
+.hasNext()
+.toArray()
+
+
+const userSchema = mongoose.Schema({
+  email: String
+}, { timestamps: true });
+
+const User = mongoose.model('User', userSchema);
+
+const doc = await User.findOneAndUpdate({email: 'test@google.com'}, {email:'newtest@google.com'}, 
+{new:true, upsert: true, timestamps:{createdAt:false, updatedAt:true}});
+
+_id: mongoose.Types.ObjectId
+
+exports.someValue = function(req, res, next) {
+    //query with mongoose
+    var query = dbSchemas.SomeValue.find({}).select({ "name": 1, "_id": 0});
+
+    query.exec(function (err, someValue) {
+        if (err) return next(err);
+        res.send(someValue);
+    });
+};
+
+
+
+@DUMP
+mongodump --db payroll   // take backup payroll database
+mongodump --host --username --password --authenticationDatabase --db payroll --collection profile --out profile.json  // server
+mongodump --host --username --password --authenticationDatabase --db payroll --collection profile --archive=profile.gz --gzip // server
+  
+
+@RESTORE
+mongorestore --db newpayroll payroll // open dump and payroll folder restore database into new name
+mongorestore --host --username  --password --authenticationDatabase --dir  // open dump and payroll folder restore database into new name
+mongorestore --host --username  --password --authenticationDatabase --archive=profile.gz --gzip
+
+
+@EXPORT
+mongoexport --db tutorila --collection profile -o profile.json
+mongoexport --db tutorila --collection profile --out profile.json
+mongoexport --db tutorila --collection profile --out profile.json --jsonArray
+mongoexport --db tutorila --collection profile --out profile.json --type=csv
+mongoexport --db tutorila --collection profile -o profileJsonArray.json --jsonArray
+cat profileJsonArray.json
+cat profile.json
+mongoexport --host  --username  --password --authenticationDatabase --db tutorila --collection profile -out profile.json //SERVER
+
+
+@IMPORT
+mongoimport --db newdb --collection profile --file profileJsonArray.json --jsonArray
+mongoimport --host  --username  --password --authenticationDatabase --db tutorila --collection profile --file profile.json //SERVER
+
+
+@STAT
+mongostat
+mongostat --host --username --password --authenticationDatabase
+
+
+@STAT
+mongotop
+mongotop 180
+
+
+@QUERYS
+"$lookup": {
+    "from": "users",
+    "localField": "followers",
+    "foreignField": "_id",
+    "as": "follower"
+}
+
+
+$pipeline = [
+    ['$group' => [
+        'Players count' => [
+            '$sum' => [
+                '$cond' => [ [ '$gt' => [ '$stats.games_played',  0 ] ], 1, 0 ] 
+            ]
+        ],
+        'avgGamesPlayed' => [
+            '$avg' => '$stats.games_played'
+        ],
+        'TotalGamesPlayed' => [
+            '$sum' => '$stats.games_played'
+        ],
+    ]],
+    ['$sort' => [get('sort', 'count') => (int) get('sort_order', -1)]],
+];
+
+$options = [];
+
+$m->aggregate($pipeline, $options);
+
+
+
+Model.aggregate([
+  { "$redact": {
+    "$cond": {
+      "if": {
+        "$gt": [
+          { "$size": {
+            "$concatArrays": [
+              { "$ifNull": [ "$organisers", [] ]  },
+              { "$ifNull": [ "$volunteers", [] ]  },
+              { "$ifNull"; [ "$participants", [] ] },
+              { "$ifNull": [ "$mentors", [] ] }
+            ]
+          } },
+          500
+        ]    
+      },
+      "then": "$$KEEP",
+      "else": "$$PRUNE"
+    }
+  }},
+  { "$project": { "_id": 1 } }
+],function(err,results) { 
+
+})
