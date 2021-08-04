@@ -1,0 +1,120 @@
+SELECT a.* FROM bcategory_tree as a, (select a1.bcategory_id,b1.root_bcategory_id,b1.cat_lftnode,b1.cat_rgtnode from bcategory as a1 inner join bcategory_tree as b1 on a1.bcategory_id =b1.bcategory_id where a1.slug='fashion-apparel') as b where a.root_bcategory_id=b.root_bcategory_id and a.cat_lftnode > b.cat_lftnode and a.cat_rgtnode < b.cat_rgtnode
+
+
+
+SELECT a.* FROM bcategory_tree as a inner join (select a1.bcategory_id,b1.root_bcategory_id,b1.cat_lftnode,b1.cat_rgtnode from bcategory as a1 inner join bcategory_tree as b1 on a1.bcategory_id =b1.bcategory_id where a1.slug='toys-games-toys-gift-store') as b on a.root_bcategory_id=b.root_bcategory_id and a.cat_lftnode > b.cat_lftnode and a.cat_rgtnode < b.cat_rgtnode order by a.cat_lftnode
+
+
+*** OUTER JOIN  ***
+SELECT a.* 
+FROM   bcategory_tree AS a, 
+       (SELECT a1.bcategory_id, 
+               b1.root_bcategory_id, 
+               b1.cat_lftnode, 
+               b1.cat_rgtnode 
+        FROM   bcategory AS a1 
+               INNER JOIN bcategory_tree AS b1 
+                       ON a1.bcategory_id = b1.bcategory_id 
+        WHERE  a1.slug = 'fashion-apparel') AS b 
+WHERE  a.root_bcategory_id = b.root_bcategory_id 
+       AND a.cat_lftnode > b.cat_lftnode 
+       AND a.cat_rgtnode < b.cat_rgtnode 
+
+
+
+*** INNER JOIN ***
+
+SELECT a.* 
+FROM   bcategory_tree AS a 
+       INNER JOIN (SELECT a1.bcategory_id, 
+                          b1.root_bcategory_id, 
+                          b1.cat_lftnode, 
+                          b1.cat_rgtnode 
+                   FROM   bcategory AS a1 
+                          INNER JOIN bcategory_tree AS b1 
+                                  ON a1.bcategory_id = b1.bcategory_id 
+                   WHERE  a1.slug = 'toys-games-toys-gift-store') AS b 
+               ON a.root_bcategory_id = b.root_bcategory_id 
+                  AND a.cat_lftnode > b.cat_lftnode 
+                  AND a.cat_rgtnode < b.cat_rgtnode 
+ORDER  BY a.cat_lftnode 
+
+
+
+*** BINDING ***
+
+SELECT `mm`.`mrid`, 
+       `mm`.`bcategory_id`, 
+       `msm`.`store_name`, 
+       `mm`.`mrbusiness_name`, 
+       `msm`.`store_code`, 
+       `msm`.`store_logo` AS `logo`, 
+       `mm`.`mrlogo`, 
+       `msm`.`store_id` 
+FROM   `merchant_store_mst` AS `msm` 
+       LEFT JOIN `merchant_mst` AS `mm` 
+              ON `mm`.`mrid` = `msm`.`mrid` 
+       LEFT JOIN `merchant_settings` AS `ms` 
+              ON `ms`.`mrid` = `msm`.`mrid` 
+       LEFT JOIN `address_mst` AS `am` 
+              ON `am`.`address_id` = `msm`.`address_id` 
+                 AND `am`.`post_type` = 3 
+       INNER JOIN `bcategory_tree` AS `c` 
+               ON `c`.`bcategory_id` = `msm`.`bcategory_id` 
+       INNER JOIN (SELECT sct.bcategory_id, 
+                          sct.root_bcategory_id, 
+                          sct.cat_lftnode, 
+                          sct.cat_rgtnode 
+                   FROM   `bcategory` AS `sc` 
+                          INNER JOIN `bcategory_tree` AS `sct` 
+                                  ON `sct`.`bcategory_id` = `sc`.`bcategory_id` 
+                   WHERE  `sc`.`slug` = 'fashion-apparel') AS p 
+               ON `c`.`root_bcategory_id` = `p`.`root_bcategory_id` 
+ORDER  BY `store_name` ASC 
+
+
+
+SELECT  `settings`.*, `character_settings`.`value`
+FROM    `settings`
+LEFT JOIN 
+       `character_settings` 
+ON     `character_settings`.`setting_id` = `settings`.`id`
+        AND `character_settings`.`character_id` = '1' 
+
+select one.*, two.meal
+from table1 as one
+left join table2 as two
+on (one.weddingtable = two.weddingtable and one.tableseat = two.tableseat)
+
+
+
+$qy=mysqli_query($con,"select corporate_accessid,CASE WHEN (SELECT count(username) FROM axonsele_moodle.mdl_scorm_scoes_track left join axonsele_moodle.mdl_user on axonsele_moodle.mdl_user.id=axonsele_moodle.mdl_scorm_scoes_track.userid 
+WHERE username = '".$uid."' and scoid='".$id."' and axonsele_moodle.mdl_scorm_scoes_track.timemodified  <  ".$interval.")>0 then 
+'Expired' 
+ ELSE ''
+    END as expired
+
+,CASE WHEN (SELECT count(username) FROM axonsele_moodle.mdl_scorm_scoes_track left join axonsele_moodle.mdl_user on axonsele_moodle.mdl_user.id=axonsele_moodle.mdl_scorm_scoes_track.userid WHERE username = '".$uid."' and scoid='".$id."')>0 then 
+'' 
+ ELSE 'Not Started'
+    END as started
+
+,CASE WHEN (SELECT count(username)  FROM axonsele_moodle.mdl_scorm_scoes_track left join axonsele_moodle.mdl_user on axonsele_moodle.mdl_user.id=axonsele_moodle.mdl_scorm_scoes_track.userid WHERE username = '".$uid."' and scoid='".$id."' and (value='completed' or value='passed'))>0 then 
+'Completed' 
+ ELSE 'Not Completed'
+    END as pass
+,CASE WHEN (SELECT count(username)  FROM axonsele_moodle.mdl_scorm_scoes_track left join axonsele_moodle.mdl_user on axonsele_moodle.mdl_user.id=axonsele_moodle.mdl_scorm_scoes_track.userid WHERE username = '".$uid."' and scoid='".$id."' and ( element='x.start.time'))>0 then 
+(SELECT axonsele_moodle.mdl_scorm_scoes_track.timemodified  FROM axonsele_moodle.mdl_scorm_scoes_track left join axonsele_moodle.mdl_user on axonsele_moodle.mdl_user.id=axonsele_moodle.mdl_scorm_scoes_track.userid WHERE username = '".$uid."' and scoid='".$id."' and ( element='x.start.time') order by axonsele_moodle.mdl_scorm_scoes_track.timemodified desc limit 0,1)
+ ELSE ''
+    END as starttime
+
+	,CASE WHEN (SELECT count(username)  FROM axonsele_moodle.mdl_scorm_scoes_track left join axonsele_moodle.mdl_user on axonsele_moodle.mdl_user.id=axonsele_moodle.mdl_scorm_scoes_track.userid WHERE username = '".$uid."' and scoid='".$id."' and ( element='cmi.core.total_time'))>0 then 
+(SELECT axonsele_moodle.mdl_scorm_scoes_track.value FROM axonsele_moodle.mdl_scorm_scoes_track left join axonsele_moodle.mdl_user on axonsele_moodle.mdl_user.id=axonsele_moodle.mdl_scorm_scoes_track.userid WHERE username = '".$uid."' and scoid='".$id."' and ( element='cmi.core.total_time') order by axonsele_moodle.mdl_scorm_scoes_track.timemodified desc limit 0,1)
+ ELSE ''
+    END as totaltime
+	
+
+,CASE WHEN (SELECT count(axonsele_moodle.mdl_scorm_scoes_track.userid)  FROM axonsele_moodle.mdl_scorm_scoes_track left join axonsele_moodle.mdl_user on axonsele_moodle.mdl_user.id=axonsele_moodle.mdl_scorm_scoes_track.userid WHERE username = '".$uid."' and scoid='".$id."' and (value='completed' or value='passed'))>0 then 
+(SELECT axonsele_moodle.mdl_scorm_scoes_track.timemodified  FROM axonsele_moodle.mdl_scorm_scoes_track left join axonsele_moodle.mdl_user on axonsele_moodle.mdl_user.id=axonsele_moodle.mdl_scorm_scoes_track.userid WHERE username = '".$uid."' and scoid='".$id."' and (value='completed' or value='passed')  order by axonsele_moodle.mdl_scorm_scoes_track.timemodified desc limit 0,1)
+ ELSE ''
+    END as passtime FROM `users` where corporate_id='CMS6980' order by `corporate_accessid` ");

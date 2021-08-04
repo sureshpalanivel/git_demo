@@ -1,0 +1,5 @@
+
+
+ALTER TABLE `faq_categories` CHANGE `system_role_id` `system_role_id` SMALLINT(5) NOT NULL DEFAULT '0' COMMENT '0-user,1-admin,2-merchant,4-dsa,5-clients,6-merchant_subadmin,7,affadmin';
+
+INSERT INTO `cashbackbid_v5`.`faq_categories_lang` (`id`, `faq_category_id`, `lang_id`, `faq_category`) VALUES (NULL, '1', '1', 'My First Drop2wash'), (NULL, '2', '1', 'Our Services'), (NULL, '3', '1', 'My Account'), (NULL, '4', '1', 'Dry Cleaning'), (NULL, '5', '1', 'Pick-up and Delivery'), (NULL, '6', '1', 'Billing and Payments'), (NULL, '7', '1', 'Policies'), (NULL, '8', '1', 'Love Drop2wash'), (NULL, '9', '1', 'General');
