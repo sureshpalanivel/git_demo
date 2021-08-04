@@ -98,3 +98,78 @@ git checkout master
 # do whatever you had to do with master
 git checkout staging
 git stash pop
+
+
+
+
+@ @ @ GIT COMMENTS 2021-08-04
+
+
+@Certificates
+
+@Upload Files in GIT
+@React
+@Mangoose
+@JWT
+@Interview Questions React Node MangoDB
+
+
+
+touch demo.txt
+rm -rf one.txt
+mkdir one
+rmdir one
+cd one
+ls - list all files
+cd ..
+clear
+git --version
+
+git init
+git status
+git add one.txt
+git add.    - add all file
+git add *.txt
+git status
+git rm --cached one.txt
+git diff
+git commit one.txt -m 'one.txt file added'
+git commit -a -m 'msg'
+git log
+git config user.name 'guru'
+git config user.email 'guru@gmail.com'
+vi one.txt  - enable edit option
+Esc :wq
+
+git log --oneline 
+
+cat one.txt - show file inner txt
+
+touch .gitignore  - two.txt  myfiles/  
+
+git branch  - list all branch
+git branch guru - new branch
+git checkout guru - goto guru branch
+git branch -d guru  - delete guru branch
+
+git checkout .  remove last changes
+gitt checkout 2512353253252 - remove old chanages
+git checkout master - navigate to master
+
+git reset --hard 64634343453 - remove last added permanently
+
+git checkout -b guru  - create new branch and navigate to guru branch
+
+git merge guru2 - branch name
+
+git remote add origin http:www.dfsds.com
+
+git push origin master
+
+git pull origin master
+
+git clone http:rtwe.com
+
+
+
+
